@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "workspace": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.OperationalInsights/workspaces/savedSearches",
+      "apiVersion": "2020-03-01-preview",
+      "name": "[concat(parameters('workspace'), '/sc200-demo-repo-query')]",
+      "properties": {
+        "Category": "Hunting Queries",
+        "DisplayName": "SC-200 Demo - Consulta desde GitHub",
+        "Query": "print Demo = 'Consulta de demostración desplegada desde GitHub'",
+        "Tags": [
+          {
+            "Name": "Description",
+            "Value": "Consulta de demostración para validar el despliegue de contenido desde el repositorio a Microsoft Sentinel."
+          },
+          {
+            "Name": "Tactics",
+            "Value": "Discovery"
+          }
+        ]
+      }
+    }
+  ]
+}
